@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   left: 0;
   display: flex;
   align-items: center;
-  flex-direction: column;
+  justify-content: center;
 `;
 
 const MainPage = () => {
