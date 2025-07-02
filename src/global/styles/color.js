@@ -8,3 +8,5 @@ const color = {
   light: '#f8f9fa',
   dark: '#212529',
 };
+
+export default color;
