@@ -17,6 +17,9 @@ const Wrapper = styled.div`
   .main-image {
     display: block;
     margin-bottom: 30px;
+    max-width: 580px;
+    min-width: 320px;
+    width: 100%;
   }
 
   .start-btn {
