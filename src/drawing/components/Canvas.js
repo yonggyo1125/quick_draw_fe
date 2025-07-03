@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import color from '../../global/styles/color';
 
@@ -10,8 +10,16 @@ const StyledCanvas = styled.canvas`
   border-radius: 3px;
 `;
 
-const Canvas = () => {
-  return <StyledCanvas width="498" height="498"></StyledCanvas>;
+const Canvas = ({ callback }) => {
+  const ref = useRef();
+
+  useEffect(() => {
+    if (typeof callback === 'function') {
+      callback(ref.current);
+    }
+  }, [ref, callback]);
+
+  return <StyledCanvas ref={ref} width="498" height="498"></StyledCanvas>;
 };
 
 export default React.memo(Canvas);
