@@ -1,5 +1,12 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import styled from 'styled-components';
+import DrawContainer from '../containers/DrawContainer';
+
+const Wrapper = styled.div`
+  max-width: 500px;
+  margin: 15px auto;
+`;
 
 const DrawPage = () => {
   return (
@@ -7,7 +14,9 @@ const DrawPage = () => {
       <Helmet>
         <title>낙서하기</title>
       </Helmet>
-      <h1>Draw</h1>
+      <Wrapper>
+        <DrawContainer />
+      </Wrapper>
     </>
   );
 };
