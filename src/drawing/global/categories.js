@@ -52,10 +52,9 @@ const categories = {
 };
 
 export function getRandomCategory() {
-  const keys = categories.keys();
+  const keys = Object.keys(categories);
   const index = Math.floor(Math.random() * keys.length);
   const key = keys[index];
-
   return [key, categories[key]];
 }
 
