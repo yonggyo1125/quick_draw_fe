@@ -10,6 +10,8 @@ const DrawContainer = () => {
   // 캔버스에 그리기 처리
   const drawCanvas = useCallback((el) => {
     const ctx = el.getContext('2d');
+    ctx.lineWidth = 10;
+    ctx.lineCap = 'round';
 
     let isDraw = false; // 선을 그릴 수 없음
     el.addEventListener('mousedown', (e) => {
