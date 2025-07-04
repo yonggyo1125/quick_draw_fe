@@ -41,29 +41,13 @@ const DrawContainer = () => {
    * 서버로 전송
    */
   const onConfirmDrawing = useCallback(() => {
-    const base64 = canvas.toDataURL('image/jpeg').split('base64,')[1];
-    
-    const buffer = new ArrayBuffer(base64.length);
-    const data = new Uint8Array(buffer);
-    for (let i = 0; i < base64.length; i++) {
-        data[i] = base64.charCodeAt(i);
-    }
-
-    const image = new Blob([buffer], {type: 'image/jpeg'});
-    
-    const formData = new FormData();
-    formData.append("image", image, "canvas.jpg");
-
-    const apiHost = process.env.REACT_APP_API_URL;
-    fetch(`${apiHost}/quickdraw/predict`, {
-      method: "POST",
-      body: formData
-    })
-    .then((res) => res.json())
-    .then(items => {
-      console.log("items", items);
-    });
-
+    canvas.toBlob(
+      (blob) => {
+        console.log('blob', blob);
+      },
+      'image/jpeg',
+      1,
+    );
   }, [canvas]);
 
   return (
