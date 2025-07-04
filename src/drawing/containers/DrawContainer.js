@@ -51,6 +51,19 @@ const DrawContainer = () => {
 
     const image = new Blob([buffer], {type: 'image/jpeg'});
     
+    const formData = new FormData();
+    formData.append("image", image, "canvas.jpg");
+
+    const apiHost = process.env.REACT_APP_API_URL;
+    fetch(`${apiHost}/quickdraw/predict`, {
+      method: "POST",
+      body: formData
+    })
+    .then((res) => res.json())
+    .then(items => {
+      console.log("items", items);
+    });
+
   }, [canvas]);
 
   return (
