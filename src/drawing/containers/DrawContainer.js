@@ -12,6 +12,8 @@ const DrawContainer = () => {
   const drawCanvas = useCallback((el) => {
     const ctx = el.getContext('2d');
     ctx.lineWidth = 10;
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, 498, 498);
     ctx.lineCap = 'round';
 
     setCanvas(el);
@@ -46,7 +48,7 @@ const DrawContainer = () => {
     canvas.toBlob(
       (blob) => {
         const formData = new FormData();
-        formData.append('image', blob);
+        formData.append('image', blob, 'canvas.jpg');
 
         fetch(`${apiHost}/quickdraw/predict`, {
           method: 'POST',
