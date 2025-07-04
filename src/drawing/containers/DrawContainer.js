@@ -8,7 +8,7 @@ const DrawContainer = () => {
   const [category, setCategory] = useState(() => getRandomCategory());
   const [canvas, setCanvas] = useState();
   const [eq, setEq] = useState(false); // 정답 여부
-  const [predictions, setPredictions] = useState([]); // 예측내용
+  const [predictions, setPredictions] = useState(); // 예측내용
 
   // 캔버스에 그리기 처리
   const drawCanvas = useCallback((el) => {
@@ -58,7 +58,7 @@ const DrawContainer = () => {
         })
           .then((res) => res.json())
           .then((items) => {
-            setEq(items[0][0] === category[1]);
+            setEq(items[0][0] === category[0]);
             setPredictions(items);
           });
       },
