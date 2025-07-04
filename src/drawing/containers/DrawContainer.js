@@ -7,6 +7,8 @@ import { getRandomCategory } from '../global/categories';
 const DrawContainer = () => {
   const [category, setCategory] = useState(() => getRandomCategory());
   const [canvas, setCanvas] = useState();
+  const [eq, setEq] = useState(false); // 정답 여부
+  const [predictions, setPredictions] = useState([]); // 예측내용
 
   // 캔버스에 그리기 처리
   const drawCanvas = useCallback((el) => {
@@ -53,7 +55,6 @@ const DrawContainer = () => {
         fetch(`${apiHost}/quickdraw/predict`, {
           method: 'POST',
           body: formData,
-          signal: AbortSignal.timeout(1000 * 60 * 3),
         })
           .then((res) => res.json())
           .then((items) => {
