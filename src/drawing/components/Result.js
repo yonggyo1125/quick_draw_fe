@@ -2,6 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { MediumButton } from '../../global/components/Buttons';
 import categories from '../global/categories';
+import color from '../../global/styles/color';
+import fontsize from '../../global/styles/fontsize';
+
+const { success, light } = color;
+const { medium } = fontsize;
 
 const Wrapper = styled.div``;
 
@@ -13,25 +18,29 @@ const Result = ({ onClick, category, eq, predictions }) => {
       </MediumButton>
 
       {predictions && predictions.length > 0 && (
-        <PredictionBox items={predictions} eq={eq} category={category[1]} />
+        <StyledPredictionBox
+          items={predictions}
+          eq={eq}
+          category={category[1]}
+        />
       )}
     </Wrapper>
   );
 };
 
-const PredictionBox = ({ items, eq, category }) => {
+const PredictionBox = ({ items, eq, category, className }) => {
   return (
-    <div>
+    <div className={className}>
       <div className="tit">
         {eq
           ? category + '(을)를 잘 그렸네요!'
           : '잘 모르겠어요. 혹시 그린 것이 아래 있나요?'}
       </div>
       {!eq && (
-        <div>
+        <div className="prediction">
           {items.map((item) => (
             <span key={item[0] + '_' + item[1]}>
-              {categories[item[0]]}({item[1] * 100}%)
+              {categories[item[0]]}({Math.round(item[1] * 1000) / 10}%)
             </span>
           ))}
         </div>
@@ -39,5 +48,7 @@ const PredictionBox = ({ items, eq, category }) => {
     </div>
   );
 };
+
+const StyledPredictionBox = styled(PredictionBox)``;
 
 export default React.memo(Result);
