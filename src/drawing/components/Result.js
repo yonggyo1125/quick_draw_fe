@@ -4,19 +4,26 @@ import { MediumButton } from '../../global/components/Buttons';
 import categories from '../global/categories';
 import color from '../../global/styles/color';
 import fontsize from '../../global/styles/fontsize';
+import loadingImg from '../../global/images/loading.gif';
 
 const { success, light } = color;
 const { medium } = fontsize;
 
 const Wrapper = styled.div``;
 
-const Result = ({ onClick, onRefresh, category, eq, predictions }) => {
+const Result = ({ onClick, onRefresh, category, eq, predictions, loading }) => {
   return (
     <Wrapper>
-      <MediumButton type="button" onClick={onClick}>
-        제출
+      {loading ? (
+        <img src={loadingImg} alt="loading" className="loading" />
+      ) : (
+        <MediumButton type="button" onClick={onClick}>
+          제출
+        </MediumButton>
+      )}
+      <MediumButton type="button" onClick={onRefresh}>
+        한번더
       </MediumButton>
-      <MediumButton type="button" onClick={onRefresh}>한번더</MediumButton>
       {predictions && predictions.length > 0 && (
         <StyledPredictionBox
           items={predictions}

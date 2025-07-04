@@ -103,6 +103,7 @@ const DrawContainer = () => {
         eq={eq}
         predictions={predictions}
         category={category}
+        loading={loading}
       />
     </>
   );
