@@ -9,6 +9,7 @@ const DrawContainer = () => {
   const [canvas, setCanvas] = useState();
   const [eq, setEq] = useState(false); // 정답 여부
   const [predictions, setPredictions] = useState(); // 예측내용
+  const [loading, setLoading] = useState(false); // 로딩 여부
 
   // 캔버스에 그리기 처리
   const drawCanvas = useCallback((el) => {
@@ -56,11 +57,14 @@ const DrawContainer = () => {
   const onConfirmDrawing = useCallback(() => {
     const apiHost = process.env.REACT_APP_API_URL;
 
+    setLoading(false);
+
     canvas.toBlob(
       (blob) => {
         const formData = new FormData();
         formData.append('image', blob, 'canvas.jpg');
 
+        setLoading(true);
         fetch(`${apiHost}/quickdraw/predict`, {
           method: 'POST',
           body: formData,
@@ -69,6 +73,7 @@ const DrawContainer = () => {
           .then((items) => {
             setEq(items[0][0] === category[0]);
             setPredictions(items);
+            setLoading(false);
           });
       },
       'image/jpeg',
@@ -84,6 +89,8 @@ const DrawContainer = () => {
     ctx.fillRect(0, 0, 498, 498);
 
     setCategory(getRandomCategory());
+    setEq(false);
+    setPredictions(undefined);
   }, [canvas]);
 
   return (
