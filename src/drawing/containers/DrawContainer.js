@@ -76,7 +76,15 @@ const DrawContainer = () => {
     );
   }, [canvas, category]);
 
-  const onRefresh = useCallback(() => {}, []);
+  const onRefresh = useCallback(() => {
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, 498, 498);
+
+    setCategory(getRandomCategory());
+  }, [canvas]);
 
   return (
     <>
