@@ -58,19 +58,25 @@ const DrawContainer = () => {
         })
           .then((res) => res.json())
           .then((items) => {
-            console.log('items', items);
+            setEq(items[0][0] === category[1]);
+            setPredictions(items);
           });
       },
       'image/jpeg',
       1,
     );
-  }, [canvas]);
+  }, [canvas, category]);
 
   return (
     <>
       <Direction category={category} />
       <Canvas callback={drawCanvas} />
-      <Result onClick={onConfirmDrawing} />
+      <Result
+        onClick={onConfirmDrawing}
+        eq={eq}
+        predictions={predictions}
+        category={category}
+      />
     </>
   );
 };
