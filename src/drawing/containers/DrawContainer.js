@@ -41,9 +41,21 @@ const DrawContainer = () => {
    * 서버로 전송
    */
   const onConfirmDrawing = useCallback(() => {
+    const apiHost = process.env.REACT_APP_API_URL;
+
     canvas.toBlob(
       (blob) => {
-        console.log('blob', blob);
+        const formData = new FormData();
+        formData.append('image', blob);
+
+        fetch(`${apiHost}/quickdraw/predict`, {
+          method: 'POST',
+          body: formData,
+        })
+          .then((res) => res.json())
+          .then((items) => {
+            console.log('items', items);
+          });
       },
       'image/jpeg',
       1,
