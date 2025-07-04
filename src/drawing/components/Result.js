@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MediumButton } from '../../global/components/Buttons';
+import categories from '../global/categories';
 
 const Wrapper = styled.div``;
 
@@ -29,7 +30,9 @@ const PredictionBox = ({ items, eq, category }) => {
       {!eq && (
         <div>
           {items.map((item) => (
-            <span key={item[0] + '_' + item[1]}></span>
+            <span key={item[0] + '_' + item[1]}>
+              {categories[item[0]]}({item[1] * 100}%)
+            </span>
           ))}
         </div>
       )}
