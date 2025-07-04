@@ -10,13 +10,13 @@ const { medium } = fontsize;
 
 const Wrapper = styled.div``;
 
-const Result = ({ onClick, category, eq, predictions }) => {
+const Result = ({ onClick, onRefresh, category, eq, predictions }) => {
   return (
     <Wrapper>
       <MediumButton type="button" onClick={onClick}>
         제출
       </MediumButton>
-
+      <MediumButton type="button" onClick={onRefresh}>한번더</MediumButton>
       {predictions && predictions.length > 0 && (
         <StyledPredictionBox
           items={predictions}
@@ -55,11 +55,17 @@ const StyledPredictionBox = styled(PredictionBox)`
   color: ${light};
   padding: 10px 20px;
   text-align: center;
-  margin-top: 5px;
+  margin-top: 10px;
   border-radius: 3px;
 
   .tit {
     margin-bottom: 5px;
+  }
+
+  .prediction {
+    span + span {
+      margin-left: 5px;
+    }
   }
 `;
 

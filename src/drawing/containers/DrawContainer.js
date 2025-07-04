@@ -38,6 +38,24 @@ const DrawContainer = () => {
     el.addEventListener('mouseup', () => {
       isDraw = false; // 마우스 버튼을 떼면 선을 그릴 수 없음
     });
+
+    function downHandler(e) {
+      ctx.beginPath();
+      ctx.moveTo(e.offsetX, e.offsetY);
+
+      isDraw = true; // 마우스를 클릭하면 선을 그릴 수 있음
+    };
+
+    function moveHandler(e) {
+      if (!isDraw) return;
+
+      ctx.lineTo(e.offsetX, e.offsetY);
+      ctx.stroke();
+    }
+
+    function upHandler(e) {
+      isDraw = false; // 마우스 버튼을 떼면 선을 그릴 수 없음
+    }
   }, []);
 
   /**
@@ -67,12 +85,17 @@ const DrawContainer = () => {
     );
   }, [canvas, category]);
 
+  const onRefresh = useCallback(() => {
+
+  }, []);
+
   return (
     <>
       <Direction category={category} />
       <Canvas callback={drawCanvas} />
       <Result
         onClick={onConfirmDrawing}
+        onRefresh={onRefresh}
         eq={eq}
         predictions={predictions}
         category={category}
