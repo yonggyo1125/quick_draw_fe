@@ -49,6 +49,18 @@ const PredictionBox = ({ items, eq, category, className }) => {
   );
 };
 
-const StyledPredictionBox = styled(PredictionBox)``;
+const StyledPredictionBox = styled(PredictionBox)`
+  background: ${success};
+  font-size: ${medium};
+  color: ${light};
+  padding: 10px 20px;
+  text-align: center;
+  margin-top: 5px;
+  border-radius: 3px;
+
+  .tit {
+    margin-bottom: 5px;
+  }
+`;
 
 export default React.memo(Result);
