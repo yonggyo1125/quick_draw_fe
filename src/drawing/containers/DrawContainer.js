@@ -53,6 +53,7 @@ const DrawContainer = () => {
         fetch(`${apiHost}/quickdraw/predict`, {
           method: 'POST',
           body: formData,
+          signal: AbortSignal.timeout(1000 * 60 * 3),
         })
           .then((res) => res.json())
           .then((items) => {
