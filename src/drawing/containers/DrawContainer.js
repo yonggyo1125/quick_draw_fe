@@ -21,30 +21,21 @@ const DrawContainer = () => {
     setCanvas(el);
 
     let isDraw = false; // 선을 그릴 수 없음
-    el.addEventListener('mousedown', (e) => {
-      ctx.beginPath();
-      ctx.moveTo(e.offsetX, e.offsetY);
 
-      isDraw = true; // 마우스를 클릭하면 선을 그릴 수 있음
-    });
+    el.removeEventListener('mousedown', downHandler);
+    el.removeEventListener('mousemove', moveHandler);
+    el.removeEventListener('mouseup', upHandler);
 
-    el.addEventListener('mousemove', (e) => {
-      if (!isDraw) return;
-
-      ctx.lineTo(e.offsetX, e.offsetY);
-      ctx.stroke();
-    });
-
-    el.addEventListener('mouseup', () => {
-      isDraw = false; // 마우스 버튼을 떼면 선을 그릴 수 없음
-    });
+    el.addEventListener('mousedown', downHandler);
+    el.addEventListener('mousemove', moveHandler);
+    el.addEventListener('mouseup', upHandler);
 
     function downHandler(e) {
       ctx.beginPath();
       ctx.moveTo(e.offsetX, e.offsetY);
 
       isDraw = true; // 마우스를 클릭하면 선을 그릴 수 있음
-    };
+    }
 
     function moveHandler(e) {
       if (!isDraw) return;
@@ -85,9 +76,7 @@ const DrawContainer = () => {
     );
   }, [canvas, category]);
 
-  const onRefresh = useCallback(() => {
-
-  }, []);
+  const onRefresh = useCallback(() => {}, []);
 
   return (
     <>
