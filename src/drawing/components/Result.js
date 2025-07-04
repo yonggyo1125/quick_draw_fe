@@ -9,21 +9,36 @@ import loadingImg from '../../global/images/loading.gif';
 const { success, light } = color;
 const { medium } = fontsize;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  .button-group {
+    display: flex;
+
+    button {
+      flex-grow: 1;
+      width: 0;
+    }
+
+    button + button {
+      margin-left: 5px;
+    }
+  }
+`;
 
 const Result = ({ onClick, onRefresh, category, eq, predictions, loading }) => {
   return (
     <Wrapper>
-      {loading ? (
-        <img src={loadingImg} alt="loading" className="loading" />
-      ) : (
-        <MediumButton type="button" onClick={onClick}>
-          제출
+      <div className="button-group">
+        {loading ? (
+          <img src={loadingImg} alt="loading" className="loading" />
+        ) : (
+          <MediumButton type="button" onClick={onClick}>
+            제출
+          </MediumButton>
+        )}
+        <MediumButton type="button" onClick={onRefresh}>
+          한번더
         </MediumButton>
-      )}
-      <MediumButton type="button" onClick={onRefresh}>
-        한번더
-      </MediumButton>
+      </div>
       {predictions && predictions.length > 0 && (
         <StyledPredictionBox
           items={predictions}
