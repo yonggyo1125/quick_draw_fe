@@ -21,6 +21,10 @@ const Wrapper = styled.div`
     button + button {
       margin-left: 5px;
     }
+
+    .loading {
+      height: 58px;
+    }
   }
 `;
 
@@ -35,7 +39,7 @@ const Result = ({ onClick, onRefresh, category, eq, predictions, loading }) => {
             제출
           </MediumButton>
         )}
-        <MediumButton type="button" onClick={onRefresh}>
+        <MediumButton type="button" onClick={onRefresh} bg="info">
           한번더
         </MediumButton>
       </div>
