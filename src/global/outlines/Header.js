@@ -18,6 +18,16 @@ const StyledHeader = styled.header`
   padding: 0 20px;
   justify-content: space-between;
 
+  .left,
+  .right {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  .right {
+    justify-content: right;
+  }
+
   a {
     font-size: ${big};
     color: ${light};
