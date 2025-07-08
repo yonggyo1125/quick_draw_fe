@@ -12,7 +12,7 @@ const LoginContainer = () => {
     e.preventDefault();
   }, []);
 
-  return <LoginForm />;
+  return <LoginForm form={form} onChange={onChange} onSubmit={onSubmit} />;
 };
 
 export default React.memo(LoginContainer);

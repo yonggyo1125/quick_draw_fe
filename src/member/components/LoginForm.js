@@ -31,11 +31,23 @@ const StyledForm = styled.form`
   }
 `;
 
-const LoginForm = () => {
+const LoginForm = ({ form, onChange, onSubmit }) => {
   return (
-    <StyledForm>
-      <input type="text" name="email" placeholder="이메일" />
-      <input type="password" name="password" placeholder="비밀번호" />
+    <StyledForm onSubmit={onSubmit} autoComplete="off">
+      <input
+        type="text"
+        name="email"
+        placeholder="이메일"
+        value={form.email ?? ''}
+        onChange={onChange}
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="비밀번호"
+        value={form.password ?? ''}
+        onChange={onChange}
+      />
       <MediumButton type="submit" width="100%">
         로그인
       </MediumButton>
