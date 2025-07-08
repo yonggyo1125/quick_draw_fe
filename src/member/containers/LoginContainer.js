@@ -38,7 +38,14 @@ const LoginContainer = () => {
     [form],
   );
 
-  return <LoginForm form={form} onChange={onChange} onSubmit={onSubmit} />;
+  return (
+    <LoginForm
+      form={form}
+      onChange={onChange}
+      onSubmit={onSubmit}
+      errors={errors}
+    />
+  );
 };
 
 export default React.memo(LoginContainer);

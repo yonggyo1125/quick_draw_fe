@@ -31,7 +31,8 @@ const StyledForm = styled.form`
   }
 `;
 
-const LoginForm = ({ form, onChange, onSubmit }) => {
+const LoginForm = ({ form, onChange, onSubmit, errors }) => {
+  console.log('errors', errors);
   return (
     <StyledForm onSubmit={onSubmit} autoComplete="off">
       <input
