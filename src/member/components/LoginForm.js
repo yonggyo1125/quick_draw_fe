@@ -10,8 +10,7 @@ const StyledForm = styled.form`
   min-width: 280px;
   max-width: 450px;
   width: 100%;
-  margin: 0 auto;
-  margin-top: calc(50% - 150px);
+  margin: 200px auto 0;
 
   input {
     border: 1px solid ${dark};
@@ -20,6 +19,7 @@ const StyledForm = styled.form`
     display: block;
     font-size: ${medium};
     text-align: center;
+    border-radius: 3px;
   }
 
   input + input {
@@ -27,7 +27,7 @@ const StyledForm = styled.form`
   }
 
   button {
-    margin-top: 20px;
+    margin-top: 10px;
   }
 `;
 
