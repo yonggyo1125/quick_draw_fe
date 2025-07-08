@@ -16,6 +16,7 @@ const StyledHeader = styled.header`
   color: ${light};
   align-items: center;
   padding: 0 20px;
+  justify-content: space-between;
 
   a {
     font-size: ${big};
@@ -54,7 +55,10 @@ const Header = () => {
         </NavLink>
       </div>
       <div className="right">
-        <NavLink to="/member/login">
+        <NavLink
+          to="/member/login"
+          className={({ isActive }) => classNames({ on: isActive })}
+        >
           <MdLogin />
           <span>로그인</span>
         </NavLink>
