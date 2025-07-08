@@ -16,4 +16,8 @@ const CommonProvider = ({ children }) => {
   );
 };
 
+const { Consumer: CommonConsumer } = CommonContext;
+
+export { CommonProvider, CommonConsumer };
+
 export default CommonContext;
