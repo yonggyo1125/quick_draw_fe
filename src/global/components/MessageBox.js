@@ -29,7 +29,11 @@ const StyledItem = styled.div`
 
 const MessageBox = ({ items, theme, children }) => {
   if (children) items = children;
-  items = Array.isArray(items) ? items : [items];
+  items = Array.isArray(items) ? items : items ? [items] : [];
+
+  if (items.length === 0) {
+    return <></>;
+  }
 
   return (
     <>
