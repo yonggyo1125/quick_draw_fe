@@ -31,10 +31,13 @@ const StyledForm = styled.form`
   button {
     margin-top: 10px;
   }
+
+  .message {
+    margin: 5px 0;
+  }
 `;
 
 const LoginForm = ({ form, onChange, onSubmit, errors }) => {
-  console.log('errors', errors);
   return (
     <StyledForm onSubmit={onSubmit} autoComplete="off">
       <input

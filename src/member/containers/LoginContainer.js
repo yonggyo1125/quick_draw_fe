@@ -1,9 +1,17 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
+import { useSearchParams, useNavigate } from 'react-router-dom';
+import CommonContext from '../../global/contexts/CommonContext';
 import LoginForm from '../components/LoginForm';
 
 const LoginContainer = () => {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
+  const {
+    actions: { setIsLogin, setLoggedMember },
+  } = useContext(CommonContext);
+
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const onChange = useCallback((e) => {
     setForm((form) => ({ ...form, [e.target.name]: e.target.value }));
@@ -34,8 +42,20 @@ const LoginContainer = () => {
       }
 
       // 로그인 처리..
+      // 아래 데이터는 서버에서 전송된 인증된 회원 정보를 가정한 것!
+      const member = {
+        seq: 1,
+        email: 'user01@test.org',
+        name: '사용자01',
+      };
+      setIsLogin(true);
+      setLoggedMember(member);
+
+      // 로그인 완료시 이동
+      const redirectUrl = searchParams.get('redirectUrl') ?? '/';
+      //navigate(redirectUrl, { replace: true });
     },
-    [form],
+    [form, setIsLogin, setLoggedMember, searchParams, navigate],
   );
 
   return (

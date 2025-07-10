@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 import { MdHome, MdDraw, MdLogin } from 'react-icons/md';
+import CommonContext from '../contexts/CommonContext';
 import color from '../styles/color';
 import fontsize from '../styles/fontsize';
 
@@ -49,6 +50,10 @@ const StyledHeader = styled.header`
 `;
 
 const Header = () => {
+  const {
+    state: { isLogin, loggedMember },
+  } = useContext(CommonContext);
+  
   return (
     <StyledHeader className="layout-width">
       <div className="left">

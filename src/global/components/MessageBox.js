@@ -38,7 +38,11 @@ const MessageBox = ({ items, theme, children }) => {
   return (
     <>
       {items.map((item, i) => (
-        <StyledItem key={item + '-' + i} theme={theme ?? 'primary'}>
+        <StyledItem
+          key={item + '-' + i}
+          theme={theme ?? 'primary'}
+          className="message"
+        >
           {item}
         </StyledItem>
       ))}
