@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { MediumButton } from '../../global/components/Buttons';
 import color from '../../global/styles/color';
 import fontsize from '../../global/styles/fontsize';
+import MessageBox from '../../global/components/MessageBox';
+
 const { dark } = color;
 const { medium } = fontsize;
 
@@ -42,6 +44,7 @@ const LoginForm = ({ form, onChange, onSubmit, errors }) => {
         value={form.email ?? ''}
         onChange={onChange}
       />
+      {errors?.email && <div>{errors.email}</div>}
       <input
         type="password"
         name="password"
@@ -49,6 +52,7 @@ const LoginForm = ({ form, onChange, onSubmit, errors }) => {
         value={form.password ?? ''}
         onChange={onChange}
       />
+      {errors?.password && <div>{errors.password}</div>}
       <MediumButton type="submit" width="100%">
         로그인
       </MediumButton>
