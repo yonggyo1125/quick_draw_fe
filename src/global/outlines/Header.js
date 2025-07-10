@@ -50,6 +50,7 @@ const StyledHeader = styled.header`
 `;
 
 const Header = () => {
+  const [isLogin, loggeddMember] = useUserInfo();
 
   return (
     <StyledHeader className="layout-width">
@@ -67,13 +68,21 @@ const Header = () => {
         </NavLink>
       </div>
       <div className="right">
-        <NavLink
-          to="/member/login"
-          className={({ isActive }) => classNames({ on: isActive })}
-        >
-          <MdLogin />
-          <span>로그인</span>
-        </NavLink>
+        {isLogin ? (
+          <>
+            <NavLink to="logout">
+              <span>로그아웃</span>
+            </NavLink>
+          </>
+        ) : (
+          <NavLink
+            to="/member/login"
+            className={({ isActive }) => classNames({ on: isActive })}
+          >
+            <MdLogin />
+            <span>로그인</span>
+          </NavLink>
+        )}
       </div>
     </StyledHeader>
   );
