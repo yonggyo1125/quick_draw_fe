@@ -51,6 +51,9 @@ const LoginContainer = () => {
       setIsLogin(true);
       setLoggedMember(member);
 
+      // 양식 초기화
+      setForm({});
+
       // 로그인 완료시 이동
       const redirectUrl = searchParams.get('redirectUrl') ?? '/';
       //navigate(redirectUrl, { replace: true });

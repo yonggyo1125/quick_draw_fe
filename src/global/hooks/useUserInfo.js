@@ -3,8 +3,8 @@ import CommonContext from '../contexts/CommonContext';
 
 export default function useUserInfo() {
   const {
-    state: { isLogin, loggeddMember },
+    state: { isLogin, loggedMember },
   } = useContext(CommonContext);
 
-  return [isLogin, loggeddMember];
+  return [isLogin, loggedMember];
 }

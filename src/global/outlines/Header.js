@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
-import { MdHome, MdDraw, MdLogin } from 'react-icons/md';
+import { MdHome, MdDraw, MdLogin, MdLogout } from 'react-icons/md';
 import useUserInfo from '../hooks/useUserInfo';
+import useLogout from '../hooks/useLogout';
 import color from '../styles/color';
 import fontsize from '../styles/fontsize';
 
@@ -50,7 +51,8 @@ const StyledHeader = styled.header`
 `;
 
 const Header = () => {
-  const [isLogin, loggeddMember] = useUserInfo();
+  const [isLogin, loggedMember] = useUserInfo();
+  const onLogout = useLogout();
 
   return (
     <StyledHeader className="layout-width">
@@ -70,9 +72,11 @@ const Header = () => {
       <div className="right">
         {isLogin ? (
           <>
-            <NavLink to="logout">
+            {loggedMember.name}({loggedMember.email})님,
+            <a onClick={onLogout}>
+              <MdLogout />
               <span>로그아웃</span>
-            </NavLink>
+            </a>
           </>
         ) : (
           <NavLink
