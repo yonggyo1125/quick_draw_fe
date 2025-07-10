@@ -44,7 +44,7 @@ const LoginForm = ({ form, onChange, onSubmit, errors }) => {
         value={form.email ?? ''}
         onChange={onChange}
       />
-      {errors?.email && <div>{errors.email}</div>}
+      <MessageBox>{errors.email}</MessageBox>
       <input
         type="password"
         name="password"
@@ -52,7 +52,8 @@ const LoginForm = ({ form, onChange, onSubmit, errors }) => {
         value={form.password ?? ''}
         onChange={onChange}
       />
-      {errors?.password && <div>{errors.password}</div>}
+      <MessageBox items={errors.password} />
+
       <MediumButton type="submit" width="100%">
         로그인
       </MediumButton>
