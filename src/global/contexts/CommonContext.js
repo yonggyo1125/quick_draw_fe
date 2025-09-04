@@ -12,22 +12,23 @@ const CommonProvider = ({ children }) => {
   useEffect(() => {
     const token = cookie.load('token');
     if (token && !loggedMember.email) {
-      (async() => {
+      (async () => {
         const res = await fetchCSR('/member');
-        if (res.ok) { // 토큰이 유효한 경우
-          setLoggedMember(await res.json())
+        if (res.ok) {
+          // 토큰이 유효한 경우
+          setLoggedMember(await res.json());
           setIsLogin(true);
           return;
-        } 
+        }
 
         // 토큰이 만료된 경우 쿠키에서 토큰 삭제
-        cookie.remove("token")
-        setLoggedMember({})
+        cookie.remove('token');
+        setLoggedMember({});
         setIsLogin(false);
       })();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loggedMember.email]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loggedMember?.email]);
 
   const value = {
     state: { isLogin, loggedMember },

@@ -58,7 +58,7 @@ const LoginContainer = () => {
 
           // 로그인 완료시 이동
           const redirectUrl = searchParams.get('redirectUrl') ?? '/';
-          navigate(redirectUrl, { replace: true });
+          window.location.replace(redirectUrl);
         } else {
           const data = await res.json();
           errors.global = data.messages;
